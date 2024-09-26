@@ -1,0 +1,27 @@
+
+services:
+  pub:
+    image: postgres
+    restart: always
+    shm_size: 128mb
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    volumes:
+      - ./data/pub/init:/docker-entrypoint-initdb.d/
+    ports:
+      - 5432:5432
+
+  sub:
+    image: postgres
+    restart: always
+    shm_size: 128mb
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    volumes:
+      - ./data/sub/init:/docker-entrypoint-initdb.d/
+    ports:
+      - 5433:5432
